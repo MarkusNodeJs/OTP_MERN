@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
+import morgan from "morgan";
 import colors from "colors";
 
 // dotenv config
@@ -14,9 +15,11 @@ const app = express();
 // Middlewares
 app.use(express.json());
 app.use(cors());
+app.use(morgan("tiny"));
+app.disable("x-powered-by"); //less hackers know about our stack
 app.use(bodyParser.urlencoded({ extended: false }));
 
-// REST API
+// HTTP GET
 app.get("/", (req, res) => {
   res.send("Server is now running");
 });
