@@ -3,7 +3,11 @@ import cors from "cors";
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
 import morgan from "morgan";
+import multer from "multer";
 import colors from "colors";
+
+// Database
+import connect from "./database/conn.js";
 
 // dotenv config
 dotenv.config();
@@ -25,6 +29,17 @@ app.get("/", (req, res) => {
 });
 // API
 
-app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`.bgCyan);
-});
+// start server when we have a valid connection
+connect()
+  .then(() => {
+    try {
+      app.listen(port, () => {
+        console.log(`Server is running on http://localhost:${port}`.bgCyan);
+      });
+    } catch (error) {
+      console.log("Cannot connect to the server");
+    }
+  })
+  .catch((error) => {
+    console.log("Invalid Database");
+  });
