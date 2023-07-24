@@ -23,6 +23,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.get("/", (req, res) => {
   res.send("Server is now running");
 });
+// API
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`.bgCyan);
