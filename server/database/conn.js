@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { MongoMemorySever } from "mongodb-memory-server";
+import { MongoMemoryServer } from "mongodb-memory-server";
 
 async function connect() {
   const mongod = await MongoMemorySever.create();

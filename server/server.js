@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 import morgan from "morgan";
 import multer from "multer";
 import colors from "colors";
+import router from "./routes/route.js";
 
 // Database
 import connect from "./database/conn.js";
@@ -27,7 +28,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.get("/", (req, res) => {
   res.send("Server is now running");
 });
-// API
+// API Routes
+app.use("/api/v1", router);
 
 // start server when we have a valid connection
 connect()
